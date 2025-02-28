@@ -1,0 +1,14 @@
+button{
+    border-style: none;
+    background-color: rgb(53, 118, 204);
+    padding: 8px;
+    margin: 8px;
+    display: flex;
+    color: white;
+    border-radius: 5px;
+}
+
+button:hover{
+    background-color: black;
+    padding: 15px;
+}
