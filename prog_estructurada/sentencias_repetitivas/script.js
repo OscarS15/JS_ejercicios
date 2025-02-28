@@ -1,44 +1,31 @@
 document.getElementById("ej1").addEventListener("click", function () {
     let num = parseFloat(prompt("Ingrese un número: "));
-
-    if (num >= 100) {
-    alert("El numero es mayor que 100");
-    } else {
-    alert("El numero no pasa de 100 eh");
+    let divisores = []
+    let suma = 0
+    for (let i = 1; i < num; i++) {
+        if(num%i ===0){
+            divisores.push(i) //push(), empujamos el numero al array
+        }
+    }
+    for (let i = 0; i < divisores.length; i++) {
+        suma += divisores[i]
+    }
+    if (suma == num) {
+        alert("Este numero es perfecto como tú")
+    }else{
+        alert("No es perfect")
     }
 });
 
 document.getElementById("ej2").addEventListener("click", function () {
-    let vocal = prompt("Ingrese pa comprobar si es vocal: ");
-    
-    let vocales = ['a','e','i','o','u'];
-
-    if(vocales.includes(vocal)){
-        alert("Es vocal")
-    }else{
-        alert("no es vocaaal ")
+    let num = parseFloat(prompt("Ingresa el numero: "));
+    cifras = 0
+    while (num>0) {
+        num = Math.floor(num/10)
+        cifras++
     }
-});
 
-document.getElementById("ej3").addEventListener("click", function () {
-    let num1 = prompt("Ingresa el primer numero: ");
-    let num2 = prompt("Ingresa el segundo numero: ");
-    let num3 = prompt("Ingresa el tercer numero: ");
-
-/*     numeros =  [num1, num2, num3]
-    numeroMayor = 0;
-    for (let i = 0; i < numeros.length; i++) {
-        if (numeroMayor <= numeros[i]) {
-            numeroMayor = numeros[i]
-        }
-    }
-    alert("El nunero mayor es: " +numeroMayor) */
-
-    if(num1 < num2 && num3 > num2){
-        alert("el orden es creciente")
-    }else{
-        alert("El orden no es creciente, sorryyy")
-    }
+    alert(`El numero ingresado tiene ${cifras} cifras`)
 })
 
 document.getElementById("ej4").addEventListener("click", function () {
