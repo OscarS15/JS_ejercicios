@@ -28,348 +28,182 @@ document.getElementById("ej2").addEventListener("click", function () {
     alert(`El numero ingresado tiene ${cifras} cifras`)
 })
 
-document.getElementById("ej4").addEventListener("click", function () {
-    //necesario el parseFloat(), para convertirlo a numeros
-    //prompt(), nos devuelve un String
-    let num1 = parseFloat(prompt("Ingresa el primer numero: "));
-    let num2 = parseFloat(prompt("Ingresa el segundo numero: "));
-    let num3 = parseFloat(prompt("Ingresa el tercer numero: "));
-
-    let sumados = num1 + num2;
-
-    if(sumados == num3){
-        alert("La suma del primer y segundo numero dan el tercero")
-    }else{
-        alert("sumadno el primer y segundo numero no dan el tercero")
+document.getElementById("ej3").addEventListener("click", function () {
+    let notas = new Array(10)
+    for (let i = 0; i < notas.length; i++) {
+        notas[i] = parseFloat(prompt(`Escribe la nota del alumno ${i + 1}`))
     }
+    let aprobados = notas.filter((aprobado) => aprobado >= 5)
+    let suspensos = notas.filter((suspenso) => suspenso < 5)
+    alert(`Las notas son: ${notas} y hay ${aprobados.length} aprobados, y ${suspensos.length} suspensos`);
+    
+});
+
+document.getElementById("ej4").addEventListener("click", function () {
+    let cantidad = parseFloat(prompt("Dime cuantas alturas quieres introducir "))
+    let alturas = new Array(cantidad)
+    let suma = 0
+    for (let i = 0; i < alturas.length; i++) {
+        alturas[i] = parseFloat(prompt(`Escribe la altura de la persona ${i + 1}`))
+    }
+    for (let i = 0; i < alturas.length; i++) {
+        suma += alturas[i]
+    }
+    let promedio = suma/alturas.length
+    alert(`Las medias de las alturas son ${promedio.toFixed(2)} metros`);
 });
 
 document.getElementById("ej5").addEventListener("click", function () {
-    let opciones = prompt(`
-            1. Archivo
-            2. Buscar
-            3. Salir`)
-    switch (opciones) {
-        case "Archivo":
-            alert("Opcion correcta")
-            break;
-        case "Buscar":
-            alert("Opcion correcta")
-            break;
-        case "Salir":
-            alert("Opcion correcta")
-            break;
-        default:
-            alert("Opcion incorrecta :(")
-            break;
+    let cantidad = parseFloat(prompt("Dime cuantos trabajadores quieres introducir "))
+    let chambeadores = new Array(cantidad)
+    for (let i = 0; i < chambeadores.length; i++) {
+        chambeadores[i] = parseFloat(prompt(`Escribe la paga del negro ${i + 1}`))
+        if (chambeadores[i] > 1000 || chambeadores[i] < 100) {
+            alert("pago no valido")
+            i--
+        }
     }
+
+    let ganan = chambeadores.filter((gana) => gana >= 500)
+    let noGanan = chambeadores.filter((no) => no < 500)
+    let gasto = chambeadores.reduce((acumulador, posActual) => acumulador + posActual, 0)
+    alert(`El gasto de la empresa en sus trabajadores es: ${gasto}
+            y hay ${ganan.length} que ganan mas de 500 y
+            ${noGanan.length} que ganan menos de 500`);
 });
 
 document.getElementById("ej6").addEventListener("click", function () {
-    let num1 = parseFloat(prompt("Ingresa el primer numero: "));
-    let num2 = parseFloat(prompt("Ingresa el segundo numero: "));
-    function par(num){
-        if (num%2 == 0) {
-            alert("Es par")
-        }
+    let numeros = new Array(25)
+    for (let index = 1; index < numeros.length; index++) {
+        numeros[index] = index
     }
-    par(num2)
-    par(num1)
+    let juntos = numeros.map(valor => {
+        return(`${valor}${valor}`) 
+    })
+    alert(juntos);
 });
 
 document.getElementById("ej7").addEventListener("click", function () {
-    let opciones = prompt(`
-            1. Equilátero
-            2. Isósceles
-            3. Escaleno`)
-
-        let ladoA;
-        let ladoB;
-        let ladoC;
-        let perimetro;
-    switch (opciones) {
-        case "Equilátero":
-        case "1":
-        case "equilatero":
-            ladoA = prompt("Ingresa el lado: ");
-            perimetro = ladoA * 3;
-            alert("El perimetro es: " + perimetro)
-            break;
-        case "Isósceles":
-        case "2":
-        case "isosceles":
-            ladoA = prompt("Ingresa los lados iguales: ");
-            ladoB = prompt("Ingresa el lado diferente: ");
-            perimetro =(2*ladoA) + ladoB ;
-            alert("El perimetro es: " + perimetro)
-            break;
-        case "Escaleno":
-        case "3":
-        case "escaleno":
-            ladoA = prompt("Ingresa el lado A: ");
-            ladoB = prompt("Ingresa el lado B: ");
-            ladoC = prompt("Ingresa el lado C: ");
-            perimetro = ladoA + ladoB + ladoC;
-            alert("El perimetro es: " + perimetro)
-            break;
-        default:
-            alert("Opcion incorrecta :(")
-            break;
+    //en este ejemplo se usara slice y reduce
+    let valores = new Array(10)
+    for (let i = 0; i < valores.length; i++) {
+        valores[i] = parseFloat(prompt(`Ingresa la posicion ${i+1}`))
     }
+    let ultimosCinco = valores.slice(-5)
+    let suma = ultimosCinco.reduce((acumulador, valor) => acumulador + valor,0)
+
+    alert(`La suma de los ultimos 5 es: ${suma}`)
 });
 
 document.getElementById("ej8").addEventListener("click", function () {
-    let num = parseFloat(prompt("Ingresa el importe: "));
-    let impuesto;
-    let neto;
-    if (num>15000 && num > 0) {
-        impuesto = 16
-        neto = (16/100) * num;
-        alert("EL neto es: "  + neto)
-    }else{
-        impuesto = 10
-        neto = (10/100) * num
-        alert("El neto es: " + neto)
+    let numero = parseFloat(prompt("Ingresa un numeo del 1 al 10"))
+    let resultado = ""
+    for (let i = 0; i <= 10; i++) {
+        resultado += `${numero} * ${i} = ${numero*i} / `
     }
+    alert(resultado)
 });
 
-document.getElementById("ej8").addEventListener("click", function () {
-    let num = parseFloat(prompt("Ingresa el importe: "));
-    let impuesto;
-    let neto;
-    let montoDar = num - neto
-    if (num>15000 && num > 0) {
-        impuesto = 16
-        neto = (16/100) * num;
-        alert("EL neto es: "  + montoDar)
-    }else{
-        impuesto = 10
-        neto = (10/100) * num
-        alert("El neto es: " + montoDar)
+document.getElementById("ej9").addEventListener("click",() => {
+    let vueltas = parseFloat(prompt("¿Cuántas veces vas a introducir las coordenadas?"));
+    let puntos = [];
+    
+    for (let i = 0; i < vueltas; i++) {
+        let posX = parseFloat(prompt(`Ingresa la coordenada X del punto ${i + 1}`));
+        let posY = parseFloat(prompt(`Ingresa la coordenada Y del punto ${i + 1}`));
+        puntos.push([posX, posY]);
     }
-});
 
-document.getElementById("ej9").addEventListener("click", function () {
-    let hora = parseFloat(prompt("Ingresa la hora: "));
-    let minuto = parseFloat(prompt("Ingresa el minuto: "));
-    let segundo = parseFloat(prompt("Ingresa el segundo: "));
-
-    segundo++
-
-    if(segundo > 59){
-        segundo = 0
-        minuto++
-    }
-    if(minuto > 59){
-        minuto = 0
-        hora++
-    }
-    if(hora > 24){
-        hora = 0
-    }
-    //hacemos que tenga dos digitos siempre, si los tiene ya, lo omite y lo convertimos a string pa concatenarlo
-    alert(`Sumandole un segundo serian las : ${hora.toString().padStart(2, "0")}:${minuto.toString().padStart(2, "0")}:${segundo.toString().padStart(2, "0")}`)
+    let cuadranteI = 0;
+    let cuadranteII = 0;
+    let cuadranteIII = 0;
+    let cuadranteIV = 0;
+    
+    // Recorrer el array de puntos
+    puntos.forEach(punto => {
+        let x = punto[0];
+        let y = punto[1];
+    
+        if (x > 0 && y > 0) {
+            cuadranteI++; // Punto en Cuadrante I
+        } else if (x < 0 && y > 0) {
+            cuadranteII++; // Punto en Cuadrante II
+        } else if (x < 0 && y < 0) {
+            cuadranteIII++; // Punto en Cuadrante III
+        } else if (x > 0 && y < 0) {
+            cuadranteIV++; // Punto en Cuadrante IV
+        }
+    });
+    
+    // Mostrar resultados
+    alert(`Puntos en Cuadrante I: ${cuadranteI}
+    Puntos en Cuadrante II: ${cuadranteII}
+    Puntos en Cuadrante III: ${cuadranteIII}
+    Puntos en Cuadrante IV: ${cuadranteIV}`);
 });
 
 document.getElementById("ej10").addEventListener("click", function () {
-    let anio = parseFloat(prompt("Ingresa cuántos años llevas trabajando: "));
-    const paga = 40000;
-    let aumento = 0;
+    let vueltas = parseFloat(prompt("¿Cuántas veces vas a introducir los lados?"));
+    let triangulos = [];
     
-    if (anio > 10) {
-        aumento = 10;
-    } else if (anio > 5) {
-        aumento = 7;
-    } else if (anio > 3) {
-        aumento = 5;
-    } else {
-        aumento = 3;
+    for (let i = 0; i < vueltas; i++) {
+        let ladoA = parseFloat(prompt(`Ingresa el lado A del triangulo ${i + 1}`));
+        let ladoB = parseFloat(prompt(`Ingresa el lado B del triangulo ${i + 1}`));
+        let ladoC = parseFloat(prompt(`Ingresa el lado C del triangulo ${i + 1}`));
+        triangulos.push([ladoA, ladoB, ladoC]);
     }
+
+    let iso = 0;
+    let equi = 0;
+    let esca = 0;
     
-    let montoDar = paga + (aumento / 100) * paga;
+    triangulos.forEach(triangulo => {
+        let ladoA = triangulo[0];
+        let ladoB = triangulo[1];
+        let ladoC = triangulo[2];
     
-    alert(`Se te ha aumentado: ${aumento}% (${(aumento / 100) * paga}) 
-    O sea que recibirás: ${montoDar} 
-    Por llevar ${anio} años en la empresa`);
+        if (ladoA == ladoB && ladoB == ladoC && ladoA == ladoC) {
+            equi++; 
+        } else if (ladoA == ladoB || ladoC == ladoB || ladoA == ladoC) {
+            iso++; 
+        } else if (ladoA != ladoB && ladoB != ladoC || ladoA != ladoC) {
+            esca++; 
+        }
+    });
     
+    alert(`Puntos en Isosceles: ${iso}
+    Puntos en Escaleno: ${esca}
+    Puntos en Equilatero: ${equi}`);
 });
 
 document.getElementById("ej11").addEventListener("click", function () {
-    let nota1 = parseFloat(prompt("Ingresa la primer nota: "));
-    let nota2 = parseFloat(prompt("Ingresa la segunda nota: "));
-    let nota3 = parseFloat(prompt("Ingresa la tercer nota: "));
-    let nota4 = parseFloat(prompt("Ingresa la cuarta nota: "));
-
-    let notas = [nota1, nota2,nota3,nota4]
-
-    //reduce() -> nos reduce a un solo valor nuestro array
-    //acumulador es donde se guarda el resultado de cada vuelta
-    // valor es el elemento el cual se esta procesando
-    //tambien se le puede poner un valor inicial -- no lo queremos
-    let suma = notas.reduce((acumulador, valor) => acumulador + valor) 
-    let media = suma /notas.length 
-
-    if(media >= 5){
-        alert("has aprobado eh, ojala yo. Tu media es: " + media.toFixed(1)) //nos dice cuantos decimales queremos poner
-    }else{
-        alert("lo siento, repites:( Tu media: " + media.toFixed(1))
+let productoOferta = prompt("Ingrese el nombre del producto en oferta 3x2:");
+let productos = [];
+let continuar = true;
+while (continuar) {
+    let nombre = prompt("Ingrese el nombre del producto (o escriba 'fin' para terminar):");
+    if (nombre.toLowerCase() === "fin") {
+        continuar = false;
+    } else {
+        let cantidad = parseFloat(prompt("Ingrese la cantidad:"));
+        let precio = parseFloat(prompt("Ingrese el precio unitario:"));
+        productos.push({ nombre, cantidad, precio });
     }
+}
+let totalFactura = 0;
+let ahorroTotal = 0;
+productos.forEach(producto => {
+    let { nombre, cantidad, precio } = producto;
+    let costoProducto = cantidad * precio;
+    if (nombre === productoOferta) {
+        let gruposDeTres = Math.floor(cantidad / 3); 
+        let unidadesPagadas = (gruposDeTres * 2) + (cantidad % 3); 
+        let ahorro = (cantidad - unidadesPagadas) * precio; 
+        costoProducto = unidadesPagadas * precio; 
+        ahorroTotal += ahorro; 
+    }
+    totalFactura += costoProducto; 
 });
 
-document.getElementById("ej12").addEventListener("click", function(){
-    let nombre = prompt("Dame tu nombre: ")
-    let cantidad = parseFloat(prompt("Dime la cantidad de productos: "))
-    let pago
-
-    if(cantidad<5) pago = "Efectivo"
-    if(cantidad>5&&cantidad<12) pago = "Tarjeta"
-    if(cantidad>13) pago = "Cheque"
-
-    alert(`Hola, ${nombre}.
-        Te estas llevando ${cantidad} productos
-        Y tu metodo de pago es: ${pago}
-        `)
-})
-
-document.getElementById("ej13").addEventListener("click", function(){
-    let nombre = prompt("Dame tu nombre: ")
-    let cantidad = parseFloat(prompt("Dime la cantidad de llantas: "))
-    let pago
-
-    if(cantidad<=12) pago = 300
-    if(cantidad>12) pago = 280
-
-    alert(`Hola, ${nombre}.
-        Te estas llevando ${cantidad} llantas
-        Y el total a pagar es: €${pago*cantidad}
-        `)
-})
-
-document.getElementById("ej14").addEventListener("click", function(){
-    let nombre = prompt("Dame tu nombre: ")
-    let producto = prompt("Dime el producto: ")
-    let precio = parseFloat(prompt("Dime el precio: "))
-    let cantidad = parseFloat(prompt("Dime la cantidad: "))
-    let aDescontar =  (20/100)*(precio*cantidad)
-    if(precio*cantidad>1000) {
-        alert(`Hola, ${nombre}.
-            Te estas llevando ${producto} la cantidad de ${cantidad}
-            Y el total a pagar es: €${precio*cantidad}
-            Pero has gastado mas de 1000€ 
-            Y se te descuenta ${aDescontar}, 
-            Total a pagar: ${(precio*cantidad)-aDescontar}
-            `)
-    }else{
-        alert(`Hola, ${nombre}.
-            Te estas llevando ${producto} la cantidad de ${cantidad}
-            Y el total a pagar es: €${precio*cantidad}
-            No hay descuento
-            `)
-    }
-})
-
-document.getElementById("ej15").addEventListener("click", function(){
-    let nombre = prompt("Dame tu nombre: ")
-    let pregunta = prompt(`Estudias y trabajas 
-                            1. Si
-                            2. No`)
-    let carrera
-    switch (pregunta) {
-        case "si":
-            carrera = prompt("Dame tu carrera: ")
-            let trabajo = prompt("Dame tu trabajo: ")
-            alert(`Hola, ${nombre}.
-                Actualmente estas estudiando y trabajando, pobrecito
-                Estdudias ${carrera}. y estas trabajando en ${trabajo}
-                `)
-            break;
-        case "no":
-            carrera = prompt("Dame tu carrera: ")
-        alert(`Hola, ${nombre}.
-            Actualmente estas estudiando, felicidades
-            Estdudias ${carrera}. 
-            `)
-            break;
-        default:
-            break;
-    }
-})
-
-document.getElementById("ej16").addEventListener("click", function(){
-    let marca = prompt("Dame la marca de la moto: ")
-    let precio = parseFloat(prompt("Dime el precio de la moto: "))
-    
-    switch (marca) {
-        case "honda":
-            aDescontar = (5/100) * precio
-            alert(`Te estas llevando una moto de marca ${marca} 
-                Y el total a pagar es: €${precio}
-                Y se te descuenta ${aDescontar}, 
-                Total a pagar: ${(precio)-aDescontar}
-                `)
-            break;
-        case "yamaha":
-            aDescontar = (8/100) * precio
-            alert(`Te estas llevando una moto de marca ${marca} 
-                Y el total a pagar es: €${precio}
-                Y se te descuenta ${aDescontar}, 
-                Total a pagar: ${(precio)-aDescontar}
-                `)
-            break;
-        case "suzuki":
-            aDescontar = (10/100) * precio
-            alert(`Te estas llevando una moto de marca ${marca} 
-                Y el total a pagar es: €${precio}
-                Y se te descuenta ${aDescontar}, 
-                Total a pagar: ${(precio)-aDescontar}
-                `)
-            break;
-        default:
-            aDescontar = (2/100) * precio
-            alert(`Te estas llevando una moto de marca ${marca} 
-                Y el total a pagar es: €${precio}
-                Y se te descuenta ${aDescontar}, 
-                Total a pagar: ${(precio)-aDescontar}
-                `)
-            break;
-    }
-})
-
-document.getElementById("ej17").addEventListener("click", function(){
-    let opcion = ""
-    while (opcion != "s" && opcion != "n") {
-        opcion = prompt("Solo puedes introducir S o N pa slair del bucle")
-    } 
-    
-    alert("Bien saliste del bucle")
-})
-
-document.getElementById("ej18").addEventListener("click", function(){
-    let num = parseFloat(prompt("Dime el numero: "))
-    switch (num) {
-        case 1:
-            alert("El dia de la semana es lunes")
-            break;
-        case 2:
-            alert("El dia de la semana es martes")
-            break;
-        case 3:
-            alert("El dia de la semana es miercoels")
-            break;
-        case 4:
-            alert("El dia de la semana es jeuves")
-            break;
-        case 5:
-            alert("El dia de la semana es viernes")
-            break;
-        case 6:
-            alert("El dia de la semana es sabado")
-            break;
-        case 7:
-            alert("El dia de la semana es domingo")
-            break;
-        default:
-            alert("no es un dia de la semana")
-            break;
-    }
-})
+alert(`Total de la factura: $${totalFactura.toFixed(2)} Ahorro total: $${ahorroTotal.toFixed(2)}`);
+});
