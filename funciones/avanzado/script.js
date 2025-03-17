@@ -27,19 +27,43 @@ document.getElementById("ej3").addEventListener("click", () =>{
 })
 
 document.getElementById("ej4").addEventListener("click", () =>{
+    let numeros = [1,2,3,4]
+    let numeros2 = [3,4,5,6]
+    
+    const numerosSin = (array, arr) => [...new Set([...array,...arr])] 
+    //aslgo confuso, pero creo que se entiende, estamos copiadno un array, osea transformando un array a un set
+    //por eso el operador de propragacion, y dentro de este, los arrays que queremos unir
+    const result = numerosSin(numeros, numeros2) //al ahcer esas funcion debenmos de gaurdarla en otra variable
+    console.log(result);
     
 })
 
 document.getElementById("ej5").addEventListener("click", () =>{
+    let numeros = [1,2,3,4]
+    let numeros2 = [3,4,5,6]
+
+    function repetidos(a1, a2){
+        return a1.filter(num => a2.includes(num))
+    }
+    console.log(repetidos(numeros, numeros2));
     
 })
 
 document.getElementById("ej6").addEventListener("click", () =>{
-    
+    //aplanar un array de arrays y volverlo un array simple
+    let numeros = [1,2,[3,5]]
+
+    function aplanado(a1){
+        return a1.flat()
+    }
+    console.log(aplanado(numeros));
 })
 
 document.getElementById("ej7").addEventListener("click", () =>{
-    
+    function encontrarPrimero(arr, condicion) {
+        return arr.find(condicion);
+      }
+      console.log(encontrarPrimero([1, 2, 3, 4, 5], num => num > 3)); // 4
 })
 
 document.getElementById("ej8").addEventListener("click", () =>{
